@@ -17,37 +17,70 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.purple[600],
       ),
-      body: Column(
-        // main axis in column is vertical
-        // cross axis in a column is horizontal
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
+      body: Row(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Text('hello!'),
-              Text('world!'),
-            ],
+          Expanded(
+            flex: 3,
+            child: Image.asset('assets/corgi_butt_fluff.jpg'),
           ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            color: Colors.cyan,
-            child: Text('container one'),
+          Expanded(
+            flex: 3,
+            // takes up the leftover space in the row
+            child: Container(
+              padding: EdgeInsets.all(30.0),
+              color: Colors.cyan,
+              child: Text('1'),
+            ),
           ),
-          Container(
-            padding: EdgeInsets.all(30.0),
-            color: Colors.pink,
-            child: Text('container two'),
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(30.0),
+              color: Colors.pinkAccent,
+              child: Text('2'),
+            ),
           ),
-          Container(
-            padding: EdgeInsets.all(40.0),
-            color: Colors.amber,
-            child: Text('container three'),
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(30.0),
+              color: Colors.amber,
+              child: Text('3'),
+            ),
           ),
         ],
       ),
+      // body: Column(
+      //   // main axis in column is vertical
+      //   // cross axis in a column is horizontal
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   crossAxisAlignment: CrossAxisAlignment.end,
+      //   children: <Widget>[
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.end,
+      //       crossAxisAlignment: CrossAxisAlignment.end,
+      //       children: <Widget>[
+      //         Text('hello!'),
+      //         Text('world!'),
+      //       ],
+      //     ),
+      //     Container(
+      //       padding: EdgeInsets.all(20.0),
+      //       color: Colors.cyan,
+      //       child: Text('container one'),
+      //     ),
+      //     Container(
+      //       padding: EdgeInsets.all(30.0),
+      //       color: Colors.pink,
+      //       child: Text('container two'),
+      //     ),
+      //     Container(
+      //       padding: EdgeInsets.all(40.0),
+      //       color: Colors.amber,
+      //       child: Text('container three'),
+      //     ),
+      //   ],
+      // ),
       // body: Row(
       // main axis in column is horizontal
       // cross axis in a column is vertical
