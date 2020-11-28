@@ -6,7 +6,14 @@ void main() {
   ));
 }
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
+  @override
+  _NinjaCardState createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +23,17 @@ class NinjaCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // cannot just use ninjaLevel += 1; because it would not refresh
+          // need to use setstate in a stateful widget, so that it would rerun
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(
@@ -64,7 +82,7 @@ class NinjaCard extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              '8',
+              '$ninjaLevel',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2.0,
