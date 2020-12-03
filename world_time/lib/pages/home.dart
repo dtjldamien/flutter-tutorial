@@ -6,8 +6,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)
+        .settings
+        .arguments; // arguments received from namedroute
+    print(data);
+
     return Scaffold(
       body: SafeArea(
         // pads the child to ensure that it is not obscured eg iPhone notch
