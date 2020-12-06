@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time/services/world_time.dart';
 
 class ChooseLocation extends StatefulWidget {
   @override
@@ -6,7 +7,7 @@ class ChooseLocation extends StatefulWidget {
 }
 
 class _ChooseLocationState extends State<ChooseLocation> {
-  int counter = 0;
+  // int counter = 0;
 
   // void getData() async {
   //   // simulate network request for a username
@@ -26,32 +27,60 @@ class _ChooseLocationState extends State<ChooseLocation> {
   //   // async method would not block the other methods from running
   // }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   print('initState function ran');
-  //   getData();
-  // }
+  void setupWorldTime() async {
+    WorldTime instance = WorldTime(
+        location: 'Berlin', flag: 'germany.png', url: 'Europe/Berlin');
+    await instance.getTime();
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.time
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('initState function ran in choose_location');
+    // getData();
+    setupWorldTime();
+  }
 
   @override
   Widget build(BuildContext context) {
-    print('build function ran');
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        backgroundColor: Colors.blue[900],
-        title: Text('Choose a location'),
-        centerTitle: true,
-        elevation: 0,
-      ), // for the back arrow
-      body: RaisedButton(
-        onPressed: () {
-          setState(() {
-            counter += 1;
-          });
-        },
-        child: Text('Counter is $counter'),
+      body: Padding(
+        padding: const EdgeInsets.all(50.0),
+        child: Text('loading'),
       ),
     );
+
+    // return Scaffold(
+    //   backgroundColor: Colors.grey[200],
+    //   appBar: AppBar(
+    //     backgroundColor: Colors.blue[900],
+    //     title: Text('Choose a location'),
+    //     centerTitle: true,
+    //     elevation: 0,
+    //   ),
+    // );
+    // print('build function ran');
+    // return Scaffold(
+    //   backgroundColor: Colors.grey[200],
+    //   appBar: AppBar(
+    //     backgroundColor: Colors.blue[900],
+    //     title: Text('Choose a location'),
+    //     centerTitle: true,
+    //     elevation: 0,
+    //   ), // for the back arrow
+    //   body: RaisedButton(
+    //     onPressed: () {
+    //       setState(() {
+    //         counter += 1;
+    //       });
+    //     },
+    //     child: Text('Counter is $counter'),
+    //   ),
+    // );
   }
 }
