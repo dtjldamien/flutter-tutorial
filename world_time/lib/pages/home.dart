@@ -8,17 +8,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Map data = {};
 
-  @override
-  void initState() {
-    print('initState() ran in home');
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   print('initState() ran in home');
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)
-        .settings
-        .arguments; // arguments received from namedroute
+    data = data.isNotEmpty
+        ? data
+        : ModalRoute.of(context)
+            .settings
+            .arguments; // arguments received from namedroute
     print(data);
 
     // set background
@@ -42,17 +44,30 @@ class _HomeState extends State<Home> {
             child: Column(
               children: <Widget>[
                 FlatButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/location');
+                  onPressed: () async {
+                    // choosing a loction
+                    dynamic result =
+                        await Navigator.pushNamed(context, '/location');
+                    // finishes when we go back to the home screen
+                    if (result != null) {
+                      setState(() {
+                        data = {
+                          'time': result['time'],
+                          'location': result['location'],
+                          'flag': result['flag'],
+                          'isDaytime': result['isDaytime']
+                        };
+                      });
+                    }
                   },
                   icon: Icon(
                     Icons.edit_location,
-                    Colors.grey[300],
+                    // Colors.grey[300],
                   ),
                   label: Text(
                     'Edit Location',
                     style: TextStyle(
-                      color: Colors.grey[300],
+                      color: Colors.red[300],
                     ),
                   ),
                   color: Colors.grey[300],
