@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import 'datadog.dart';
+
 final FlutterAppAuth appAuth = FlutterAppAuth();
 const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
@@ -125,12 +127,17 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Auth0 Demo'),
         ),
-        body: Center(
-          child: isBusy
-              ? const CircularProgressIndicator()
-              : isLoggedIn
-                  ? Profile(logoutAction, name, picture)
-                  : Login(loginAction, errorMessage),
+        body: Column(
+          children: [
+            Center(
+              child: isBusy
+                  ? const CircularProgressIndicator()
+                  : isLoggedIn
+                      ? Profile(logoutAction, name, picture)
+                      : Login(loginAction, errorMessage),
+            ),
+            DataDog(),
+          ],
         ),
       ),
     );
