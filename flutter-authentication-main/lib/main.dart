@@ -19,8 +19,8 @@ const FlutterSecureStorage secureStorage = FlutterSecureStorage();
 ///           Auth0 Variables
 /// -----------------------------------
 
-const String AUTH0_DOMAIN = 'dtjldamien.us.auth0.com';
-const String AUTH0_CLIENT_ID = 'ig7SS3K3rlpbbTLcxodva0aGAZYve28K';
+const String AUTH0_DOMAIN = 'AUTH0_DOMAIN.auth0.com';
+const String AUTH0_CLIENT_ID = 'AUTH0_CLIENT_ID';
 
 const String AUTH0_REDIRECT_URI = 'com.auth0.flutterdemo://login-callback';
 const String AUTH0_ISSUER = 'https://$AUTH0_DOMAIN';
